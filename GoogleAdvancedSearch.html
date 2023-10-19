@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Advanced Search</title>
+    <link rel="stylesheet" href="style.css">
+    <a href="index.html">Google Search</a>
+
+</head>
+
+<body>
+    <div class="container">
+        <label style="margin-right:10px">
+            <font style="vertical-align: inherit;">
+                <font style="vertical-align: inherit;">Advanced Search</font>
+            </font>
+        </label>
+    </div>
+    <div class="gy3Eif"></div>
+    <div class="Mza7yc">
+        <form id="googleSearchForm">
+            <div class="container-input">
+                <div>
+                    <div class="FAcADc">
+                        <div class="lOTAE">
+                            <label for="CwYCWc">
+                                <font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;">All the following words:</font>
+                                </font>
+                            </label>
+                        </div>
+                    </div>
+                    <input id="allWords" name="q" class="inputs" type="text">
+                </div>
+                <br>
+                <div>
+                    <div class="FAcADc">
+                        <div class="lOTAE">
+                            <label for="CwYCWc">
+                                <font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;">The following exact word or phrase:</font>
+                                </font>
+                            </label>
+                        </div>
+                    </div>
+                    <input id="exactPhrase" name="exactTerms" class="inputs" type="text">
+                </div>
+                <br>
+                <div>
+                    <div class="FAcADc">
+                        <div class="lOTAE">
+                            <label for="CwYCWc">
+                                <font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;">Any of the following words:</font>
+                                </font>
+                            </label>
+                        </div>
+                    </div>
+                    <input id="anyWords" name="anyTerms" class="inputs" type="text">
+                </div>
+                <br>
+                <div>
+                    <div class="FAcADc">
+                        <div class="lOTAE">
+                            <label for="CwYCWc">
+                                <font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;">None of the following words:</font>
+                                </font>
+                            </label>
+                        </div>
+                    </div>
+                    <input id="noneWords" name="excludeTerms" class="inputs" type="text">
+                </div>
+
+            </div>
+            <font style="vertical-align: inherit;">
+                <font style="vertical-align: inherit;">
+                    <input class="jfk-button jfk-button-action dUBGpe"
+                        style="-webkit-user-select:none;user-select:none;line-height:100%;height:30px;min-width:120px"
+                        value="Advanced Search" type="submit">
+                </font>
+            </font>
+        </form>
+    </div>
+
+
+    <script>
+        const form = document.getElementById("googleSearchForm");
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            const allWords = document.getElementById("allWords").value;
+            const exactPhrase = document.getElementById("exactPhrase").value;
+            const anyWords = document.getElementById("anyWords").value;
+            const noneWords = document.getElementById("noneWords").value;
+
+            let query = "";
+
+            if (allWords) {
+                query += `allintext: "${allWords}" `;
+            }
+
+            if (exactPhrase) {
+                query += `"${exactPhrase}" `;
+            }
+
+            if (anyWords) {
+                query += `OR ${anyWords} `;
+            }
+
+            if (noneWords) {
+                query += `-${noneWords} `;
+            }
+            const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+            window.open(searchUrl, "_blank");
+
+        });
+    </script>
+
+    </div>
+</body>
+
+</html>
